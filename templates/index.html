@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	{%for photo in data%}
+	<img src="{{photo.image_path.url}}"> 
+	{%endfor%}
+    
+{% endblock %}

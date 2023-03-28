@@ -1,0 +1,82 @@
+<body>
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите имя</label><br>
+            <input type="text" name="name" />
+        </p>
+        <p>
+            <label>Введите возраст</label><br>
+            <input type="number" name="age" />
+        </p>
+        <input type="submit" value="Сохранить" >
+	</form>
+	<!-- выбрать адрес, если будет новый аддрес...-->
+	<h2>Свободное время</h2>
+	<!-- Попробовать посмотреть локальные переменные-->
+	<!-- Болки свободного времени лучше поместить под одну таблицу и подписать стилистов-->
+    <table>
+        <thead>
+		{% if blocks[0].day_name == "Mon" %}
+			<th>Понедельник</th><th>Вторник</th><th>Среда</th><th>Четверг</th><th>Пятница</th><th>Суббота</th><th>Воскресенье</th>
+		{% elif blocks[0].day_name == "Tue" %}
+			<th>Вторник</th><th>Среда</th><th>Четверг</th><th>Пятница</th><th>Суббота</th><th>Воскресенье</th><th>Понедельник</th>
+		{% elif blocks[0].day_name == "Wen"%}
+			<th>Среда</th><th>Четверг</th><th>Пятница</th><th>Суббота</th><th>Воскресенье</th><th>Понедельник</th><th>Вторник</th>
+		{% elif blocks[0].day_name == "Thu" %}
+			<th>Четверг</th><th>Пятница</th><th>Суббота</th><th>Воскресенье</th><th>Понедельник</th><th>Вторник</th><th>Среда</th>
+		{% elif blocks[0].day_name == "Fri" %}
+			<th>Пятница</th><th>Суббота</th><th>Воскресенье</th><th>Понедельник</th><th>Вторник</th><th>Среда</th><th>Четверг</th>
+		{% elif blocks[0].day_name == "Sat" %}
+			<th>Суббота</th><th>Воскресенье</th><th>Понедельник</th><th>Вторник</th><th>Среда</th><th>Четверг</th><th>Пятница</th>
+		{% else %}
+			<th>Воскресенье</th><th>Понедельник</th><th>Вторник</th><th>Среда</th><th>Четверг</th><th>Пятница</th><th>Суббота</th>
+		{% endif %}
+		</thead>
+        {% for block in blocks %}
+        {% if block.day_name == "Mon" %}
+		<tr>
+		{% endif %}
+		{% if block.appointment == null %}
+            <td class ="idle">
+		{% else %}
+			<td class = "busy">
+		{% endif %}
+		<!-- вывод валидных блоков времени -->
+		{% if block.day_name == "Fri" && block.time > "18:20" %}
+		--:--
+		{% elif (block.day_name == "Sat" || block.day_name == "Sun" ) && (block.time > "16:20" || block.time < "10:00")  %}
+		--:--
+		{% else %}
+			{{ block.time }}
+		{% endif %}
+		</td>
+        {% if block.day_name == "Mon" %}
+		</tr>
+		{% endif %}
+		 <!-- <td><a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{person.id}}">Удалить</a></td>  -->
+        {% endfor %}
+	</table>
+	<!--Вывести легкнду таблицы по цветам-->
+	<!--Далее просим выбрать стилиста и все остальное
+	Сначала выбираем стилиста и услугу, на основе этих данных фильтруем выводящую информацию
+	о доступном времени-->
+	<!--Все это должно быть в форме-->
+	{% for person in stylist %}
+	<li>person</li>
+	{% endfor %}
+	{% for option in options %}
+	<li>option</li>
+	{% endfor %}
+	<!--Выбрать день недели-->
+	{% for block in blocks %}
+	{% if (block.day_name == #буферная из предыдущего выбора# )%}
+	{% endif %}
+	{% endfor %}
+	<!--client_phone - номер телефона клиента-->
+
+<!--Формируем для записи в Appointment, далее редиректим на страницу по пост запросу 
+	и проверяем возможность записи, выводим информацию пользователю -->
+
+
+</body>

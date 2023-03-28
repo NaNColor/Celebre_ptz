@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+{% block head %}
+<html>
+<head>
+	<link rel="stylesheet" href="{% static 'content.css' %}">
+</head>
+<body>
+	<div class="logo">
+		<div>  </div>
+		<img src="{% static 'ava1.png' %}" alt="logo">
+		<img src="{% static 'celebre1.png' %}" alt="Celebre">
+	</div>
+{% block menu %}
+<table height="auto" style="margin: 0; padding: 0; background: rgba(25, 14, 128, 0.383);">
+	<tr style="margin: 0; padding: 0;"><td width="80%" style="margin: 0; padding: 0;"></td>
+	<td style="margin: 0; padding: 0;">
+	<ul class="menu_main">
+		<li><a href="#">Главная</a></li>
+		<li><a href="#">Запись</a></li>
+		<li><a href="#">О нас</a></li>
+		<li><a href="#">Портфолио</a></li>
+	</ul>
+	</td></tr>
+</table>
+{% endblock %}
+{% endblock %}
+
+{% block page %}
+{% block content %}
+{% endblock %}
+{% endblock %}
+
+{% block footer %}
+
+<footer class="footer">
+    
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.vk.com/celebre_ptz">
+          <ion-icon name="logo-vk"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu_footer">
+      <li class="menu_footer__item"><a class="menu_footer__link" href="#">Главная</a></li>
+      <li class="menu_footer__item"><a class="menu_footer__link" href="#">Запись</a></li>
+      <li class="menu_footer__item"><a class="menu_footer__link" href="#">О нас</a></li>
+      <li class="menu_footer__item"><a class="menu_footer__link" href="#">Портфолио</a></li>
+	</ul>
+	{% block copyright %}
+	<!-- &copy; -->
+	<p>2023 Celebre | Петрозаводск</p>
+	{% endblock %}
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- Конец footer'а и страницы -->
+{% endblock %}
+</body>
+</html>
+<!-- <a class="share-yt" href="https://www.vk.com/celebre_ptz" target="_blank" rel="nofollow"></a> -->

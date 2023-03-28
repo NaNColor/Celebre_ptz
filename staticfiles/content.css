@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Lora);
+.idle
+{
+	color:bisque;
+}
+.idle:hover
+{
+	color:cornflowerblue;
+}
+.busy
+{
+	color:lightcoral;
+}
+a.nav:hover
+{ 
+	color:rgb(245, 96, 50);
+}
+.logo
+{
+	display: grid;
+	grid-template-columns: 50px 1fr 2fr;
+	background-color:#2a244a;
+	width: 100%;
+	height:min-content;
+	padding: 20px;
+}
+.padding_div
+{
+	padding: 20px;
+}
+img 
+{
+	width: 100%;
+	height: auto;
+}
+
+.menu-main ul 
+{
+	list-style: none; /*убираем маркеры списка*/
+  	margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+  	padding-left: 20px; /*убираем левый отступ, равный 40px*/
+	display: -webkit-flex; 
+  	display: flex;
+  	background: #FFD7A7;
+}
+.menu-main a 
+{
+	text-decoration: none; /*убираем подчеркивание текста ссылок*/
+	text-decoration: none;
+	font-family: 'Lora', serif;
+	transition: .5s linear;
+	padding: 1em;
+  	display: block;
+  	color: #2a244a;
+  	border-right: 1px solid #564b92;
+  	background: rgba(25, 14, 128, 0.383);
+  }
+.menu-main a:hover 
+{
+	background: #FFAB51
+}
