@@ -1,9 +1,38 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% load my_filters %}
 {% block content %}
-
-	{%for photo in data%}
-	<img src="{{photo.image_path.url}}"> 
-	{%endfor%}
-    
+<div class="blok">
+<div class="galery">
+	{%if count != 0%}
+		<div id="carousel" class="carousel slide" data-ride="carousel">
+		  <div class="carousel-inner">
+			{%for photo in data%}
+			{%if forloop.counter0|mod:3 == 0%}
+			<div class="carousel-item {%if forloop.first%}active{%endif%}">
+				<div class="row no-gutters">
+			{%endif%}
+					<div class="col-4 crop">
+						<img class="img-fluid defimg" src="{{photo.image_path.url}}" alt="{{photo.title}}">
+					</div>
+			{%if forloop.counter0|mod:3 == 2%}
+				  </div>
+			</div>
+			{%endif%}
+			{%endfor%}
+		  </div>
+		</div>
+	{%else%}
+	<div class="crop">
+		<img src="{%static 'ava1.png'%}" alt="logo">
+	</div>
+	<div class="crop">
+		<img src="{%static 'ava1.png'%}" alt="logo">
+	</div>
+	<div class="crop">
+		<img src="{%static 'ava1.png'%}" alt="logo">
+	</div>
+	{%endif%}
+</div>
+</div>
 {% endblock %}
