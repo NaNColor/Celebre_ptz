@@ -1,18 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
-{% block head %}
 <html>
+{% block head %}
 <head>
 	<link rel="stylesheet" href="{% static 'content.css' %}">
 	<link rel="shortcut icon" type="image/x-icon" href="{% static favicon.ico%}">
 </head>
-<body>
-	<div class="logo">
-		<div>  </div>
-		<img src="{% static 'ava1.png' %}" alt="logo">
-		<img src="{% static 'celebre1.png' %}" alt="Celebre">
-	</div>
+{% endblock %}
 {% block menu %}
+<body>
+<div class="logo">
+	<div>  </div>
+	<img src="{% static 'ava1.png' %}" alt="logo">
+	<img src="{% static 'celebre1.png' %}" alt="Celebre">
+</div>
 <table height="auto" style="margin: 0; padding: 0; background: rgba(25, 14, 128, 0.383);">
 	<tr style="margin: 0; padding: 0;"><td width="80%" style="margin: 0; padding: 0;"></td>
 	<td style="margin: 0; padding: 0;">
@@ -24,7 +25,6 @@
 	</ul>
 	</td></tr>
 </table>
-{% endblock %}
 {% endblock %}
 
 {% block page %}
