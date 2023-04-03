@@ -27,6 +27,34 @@
 {%endblock%}
 {% block content %}
 <div class="blok">
+	<div style="margin:150px;"> </div>
+</div>
+<div class="blok" align="center">
+	<table  width="80%">
+		<tr>
+			<td width="50%" align="center" class="center-text">
+				<p style="font-size:1.5em">г. Петрозаводск, ул. Калевала д. 4а</p>
+				<p style="margin:100px;"></p>
+				<div style="display: inline-block;">
+				<ul >
+					<li>модельные стрижки</li>
+					<li>мелирование и окрашивание любой сложности</li>
+					<li>укладки</li>
+					<li>вечерние прически</li>
+				</ul>
+				</div>
+				<p style="margin:100px;"></p>
+				<p>Наши мастера - профессионалы своего дела. </p>
+				<p>Они докажут, что качественные услуги могут стоить приемлемо!</p>
+			</td>
+			<td width="50%" align="center"><img src="{% static 'schedule1.png' %}" alt="Режим работы" width="70%"></td>
+		</tr>
+	</table>
+</div>
+<div class="blok">
+	<div style="margin:100px;"> </div>
+</div>
+<div class="blok">
 <div class="galery">
 	{%if count != 0%}
 		<div id="carousel" class="carousel slide" data-ride="carousel">
@@ -56,5 +84,9 @@
 	</div>
 	{%endif%}
 </div>
+</div>
+
+<div class="blok">
+	<div style="margin:100px;"> </div>
 </div>
 {% endblock %}
