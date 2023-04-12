@@ -13,10 +13,16 @@ a {text-decoration: none; /*убираем подчеркивание текст
 	font-family: 'Lora', serif;
 	transition: .5s linear;
 }
-
+.minwdh{
+	min-width: 400px;
+}
 .center-text {
   font-size: 1.2em;
   font-family: 'Lora', serif;
+}
+.center-text p {
+  font-size: 1.5em;
+  min-width: fit-content;
 }
 .center-text li {
   text-align: start;
@@ -26,6 +32,7 @@ a {text-decoration: none; /*убираем подчеркивание текст
   font-variant: small-caps;
   font-weight: bold;
   cursor: default;
+  min-width: fit-content;
 }
 .center-text li:before {
   position: absolute;
