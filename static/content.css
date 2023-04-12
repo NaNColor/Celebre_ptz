@@ -10,7 +10,6 @@ ul {
 	padding-left: 0; /*убираем левый отступ, равный 40px*/
   }
 a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
-	text-decoration: none;
 	font-family: 'Lora', serif;
 	transition: .5s linear;
 }
@@ -109,13 +108,14 @@ li.main_menu
 }
 .menu_main a 
 {
-	text-decoration: none; /*убираем подчеркивание текста ссылок*/
+	font-size: 130%;
+	text-decoration: none !important; /*убираем подчеркивание текста ссылок*/
 	font-family: 'Lora', serif;
 	transition: .5s linear;
-	padding: 1em;
-  	display: block;
-  	color: #2a244a;
-  	border-right: 1px solid #564b92;
+	padding: .7em;
+  display: block;
+  color: #2a244a !important;
+  border-right: 1px solid #564b92;
   }
 .menu_main a:hover 
 {
