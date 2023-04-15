@@ -78,13 +78,13 @@ WSGI_APPLICATION = 'celebre.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
+        #'ENGINE': 'django.db.backends.mysql',
 
-        'OPTIONS': {
-                    'read_default_file': 'D:/work/Py/Celebre_ptz/my.cnf',
-                },
-        #'NAME': BASE_DIR / 'db.sqlite3',
+#         'OPTIONS': {
+#                     'read_default_file': 'D:/work/Py/Celebre_ptz/my.cnf',
+#                 },
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

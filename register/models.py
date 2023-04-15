@@ -1,55 +1,54 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-
+from datetime import datetime
+from datetime import time
 # Create your models here.
 
 #tipa zapis k stilistu
-# class Appointment(models.Model):
-#     client_name = models.CharField(max_length=255, verbose_name = "Имя")
-#     client_patronymic = models.CharField(max_length=255, verbose_name = "Отчество")#otchestvo
-#     client_phone = models.CharField(max_length=13, verbose_name="Номер телефона")
-#     appointment_reg_date = models.DateTimeField(auto_now_add=True)
-#     appointment_beg_date = models.DateTimeField(verbose_name = "Начало")
-#     appointment_end_date = models.DateTimeField(verbose_name = "Конец")
-#     option = models.ForeignKey('Option', 
-#         on_delete=models.SET_DEFAULT,default=None, verbose_name = "Услуга")#option_id
-#     stylist = models.ForeignKey('Stylist', 
-#         on_delete=models.PROTECT, verbose_name = "Стилист")#stylist_id
-#     address = models.ForeignKey('Address', on_delete=models.PROTECT, verbose_name = "Адрес")#address_id
-#     proof = models.BooleanField(default=False)#podtverzdeno?
-    
-    
-#     def get_absolute_url(self):
-#         #Returns the url to access a particular instance.
-#         return reverse('appointmemt', args=[str(self.id)])
+def get_default_my_date():
+    return "Запись от "+datetime.now().strftime("%d.%m.%Y (%H:%M)")
+class Appointment(models.Model):
+    title = models.CharField(max_length=255, default=get_default_my_date)
+    client_name = models.CharField(max_length=255, verbose_name = "Имя")
+    client_patronymic = models.CharField(max_length=255, default="", verbose_name = "Отчество")#otchestvo
+    client_phone = models.CharField(max_length=13, verbose_name="Номер телефона")
+    appointment_reg_date = models.DateTimeField(auto_now_add=True)
+    appointment_beg_date = models.TimeField(verbose_name = "Начало")
+    appointment_end_date = models.TimeField(verbose_name = "Конец")
+    option = models.ForeignKey('Option',
+        on_delete=models.SET_DEFAULT, default=None, verbose_name = "Услуга")#option_id
+    stylist = models.ForeignKey('Stylist',
+        on_delete=models.SET_DEFAULT, default=None, verbose_name = "Стилист")#stylist_id
+    address = models.ForeignKey('Address', on_delete=models.PROTECT, to_field='id', default=1, verbose_name = "Адрес")#address_id
+    proof = models.BooleanField(default=False)#podtverzdeno?
 
+    def __str__(self):
+        return self.title
+#title = models.CharField(max_length=255)#имя файла
+class Option(models.Model):
+    name = models.CharField(max_length=255, verbose_name = "Наименование")
+    price = models.CharField(max_length=255, verbose_name = "Начальная цена")
+    #count_time_block = models.IntegerField(default=1,verbose_name = "Кол-во затрачиваемых временных отрезков (по 40 мин.)")
+    count_time_block = models.TimeField(default=time(0, 40, 0),verbose_name ="Затрачиваемое время (лучше кратное 40 мин)")
 
-# class Option(models.Model):
-#     name = models.CharField(max_length=255, verbose_name = "Наименование")
-#     price = models.CharField(max_length=255, verbose_name = "Начальная цена")
-#     count_time_block = models.IntegerField(verbose_name = "Кол-во затрачиваемых временных отрезков (по 40 мин.)")
+    def __str__(self):
+        return self.name
+class Stylist(models.Model):
+    name = models.CharField(max_length=255, verbose_name = "Имя")
+    surname = models.CharField(max_length=255, verbose_name = "Фамилия")
+    patronymic = models.CharField(max_length=255, default="", verbose_name = "Отчетсво")
+    photo = models.ImageField(upload_to="images/stylists/",default = 'null', null = True)
+    about = models.TextField(verbose_name = "О себе")
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name+" "+self.surname
+class Address(models.Model):
+    city = models.CharField(max_length=255, verbose_name = "Город")
+    street = models.CharField(max_length=255, verbose_name ="Улица")
+    building = models.CharField(max_length=255,verbose_name = "Здание")
 
-# class Stylist(models.Model):
-#     name = models.CharField(max_length=255, verbose_name = "Имя")
-#     surname = models.CharField(max_length=255, verbose_name = "Фамилия")
-#     patronymic = models.CharField(max_length=255, verbose_name = "Отчетсво")
-#     def __str__(self):
-#         return self.surname + ' ' + self.name
-
-# class Address(models.Model):
-#     city = models.CharField(max_length=255, verbose_name = "Город")
-#     street = models.CharField(max_length=255, verbose_name ="Улица")
-#     building = models.CharField(max_length=255,verbose_name = "Здание")
-    
-#     def __str__(self):
-#         full_address =''
-#         full_address += self.street + ' '
-#         full_address += self.building + ' '
-#         return full_address
-
+    def __str__(self):
+        return self.city+" "+self.street+" "+self.building
 # # DAY_CHOICES = (
 # #     (datetime.strptime("Mon"), "Понедельник"),
 # #     (datetime.strptime("Tue"), "Вторник"),

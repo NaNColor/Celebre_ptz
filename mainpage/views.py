@@ -14,8 +14,3 @@ def index(request):
 
     return render(request,'index.html',{'data': data, 'count': buf_count})
     #HttpResponse("MAIN")
-    
-
-def pageNotFound(request, exception):
-    return redirect('mainpage/index.html')
-    #HttpResponseNotFound('<h1>Страница не найдена</h1>')
