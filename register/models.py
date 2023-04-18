@@ -13,6 +13,7 @@ class Appointment(models.Model):
     client_patronymic = models.CharField(max_length=255, default="", verbose_name = "Отчество")#otchestvo
     client_phone = models.CharField(max_length=13, verbose_name="Номер телефона")
     appointment_reg_date = models.DateTimeField(auto_now_add=True)
+    appointment_date = models.DateField(verbose_name="Дата записи", null=True)
     appointment_beg_date = models.TimeField(verbose_name = "Начало")
     appointment_end_date = models.TimeField(verbose_name = "Конец")
     option = models.ForeignKey('Option',
@@ -69,7 +70,7 @@ class Blocks(models.Model):
     date = models.DateField() #now.strftime("%A") = day of week
     # day_name = DAY_CHOICES
     # time  = TIME_CHOICES
-    appointment = models.ForeignKey('Appointment', on_delete=models.SET_DEFAULT, default = 'null', null = True)
+    appointment = models.ForeignKey('Appointment', on_delete = models.SET_NULL, null = True, blank=True, default=None)
     #занятость смотрим по null в appointmemt
     stylist = models.ForeignKey('Stylist', on_delete=models.PROTECT)
     address = models.ForeignKey('Address', on_delete=models.PROTECT, to_field='id', default=1)
