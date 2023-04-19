@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Appointment, Option, Stylist, Address, Times, Blocks, WorkSchedule
 # Register your models here.
 class WorkScheduleAdmin(admin.ModelAdmin):
-    list_display = ('stylist', 'day_of_work', )
+    list_display = ('stylist', 'day_of_work', 'is_work', )
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = ('title', 'proof', )
 admin.site.register(Appointment, AppointmentAdmin)

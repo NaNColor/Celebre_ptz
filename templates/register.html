@@ -2,5 +2,16 @@
 {% load static %}
 
 {% block content %}
-
+<div class="blok">
+    <div style="margin:150px;"> </div>
+</div>
+<h1> {{str}}</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>Test:<br> <input test="test" /></p>
+    <input type="submit" value="Send" />
+</form>
+<div class="blok">
+    <div style="margin:150px;"> </div>
+</div>
 {% endblock %}

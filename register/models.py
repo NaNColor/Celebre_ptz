@@ -13,7 +13,7 @@ class Appointment(models.Model):
     client_patronymic = models.CharField(max_length=255, default="", verbose_name = "Отчество")#otchestvo
     client_phone = models.CharField(max_length=13, verbose_name="Номер телефона")
     appointment_reg_date = models.DateTimeField(auto_now_add=True)
-    appointment_date = models.DateField(verbose_name="Дата записи", null=True)
+    appointment_date = models.DateField(verbose_name="Дата записи", null=True, blank=True)
     appointment_beg_date = models.TimeField(verbose_name = "Начало")
     appointment_end_date = models.TimeField(verbose_name = "Конец")
     option = models.ForeignKey('Option',
@@ -37,8 +37,8 @@ class Option(models.Model):
 class Stylist(models.Model):
     name = models.CharField(max_length=255, verbose_name = "Имя")
     surname = models.CharField(max_length=255, verbose_name = "Фамилия")
-    patronymic = models.CharField(max_length=255, default="", verbose_name = "Отчетсво")
-    photo = models.ImageField(upload_to="images/stylists/",default = 'null', null = True)
+    patronymic = models.CharField(max_length=255, verbose_name = "Отчетсво", null = True, blank=True)
+    photo = models.ImageField(upload_to="images/stylists/", default = 'null', null = True)
     about = models.TextField(verbose_name = "О себе")
 
     def __str__(self):
@@ -54,7 +54,8 @@ class Address(models.Model):
 class WorkSchedule(models.Model):
     stylist = models.ForeignKey('Stylist',
         on_delete = models.SET_DEFAULT, default=None, verbose_name = "Стилист")#stylist_id
-    day_of_work = models.DateField(verbose_name = "Рабочий день", null = True)
+    day_of_work = models.DateField(verbose_name = "День", null = True)
+    is_work = models.BooleanField(default=False, verbose_name = "Рабочий день")
     sick_day = models.BooleanField(default=False, verbose_name = "Больничный")
     def __str__(self):
         if self.day_of_work != 'null':
