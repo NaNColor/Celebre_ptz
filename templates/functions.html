@@ -5,7 +5,11 @@
 <div class="blok">
     <div style="margin:150px;"> </div>
 </div>
-
+<form method="post">
+    {% csrf_token %}
+    <p>passwd:</p> <input type="text" name="passwd" ><br><br>
+    <input type="submit" value="Submit">
+</form>
 <div class="blok">
     <div style="margin:150px;"> </div>
 </div>

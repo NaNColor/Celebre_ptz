@@ -74,7 +74,7 @@ class Blocks(models.Model):
     appointment = models.ForeignKey('Appointment', on_delete = models.SET_NULL, null = True, blank=True, default=None)
     #занятость смотрим по null в appointmemt
     stylist = models.ForeignKey('Stylist', on_delete=models.PROTECT)
-    address = models.ForeignKey('Address', on_delete=models.PROTECT, to_field='id', default=1)
+    address = models.ForeignKey('Address', on_delete=models.PROTECT, to_field='id', default=Address.objects.first().id)
 
 class Times(models.Model):
     time_clock = models.TimeField(verbose_name ="Время")
