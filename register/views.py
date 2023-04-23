@@ -9,22 +9,23 @@ from datetime import datetime, date, timedelta
 def add_schedule_2x2():
     stylists = Stylist.objects.all()
     for worker in stylists:
-        end_date = WorkSchedule.objects.filter(stylist = worker.pk).order_by('-day_of_work').first().day_of_work
-        if end_date > date.today() + timedelta(days=7):
-            return
-        end_date = end_date - timedelta(days=1)
-        q = WorkSchedule.objects.filter(stylist = worker.pk).filter(day_of_work__gte = end_date)
-        if q[1].is_work == q[0].is_work == True:
-            new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
-                day_of_work = q[1].day_of_work + timedelta(days=1), is_work = False)
-        elif q[1].is_work == q[0].is_work == False:
-            new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
-                day_of_work = q[1].day_of_work + timedelta(days=1), is_work = True)
-        else:
-            new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
-                day_of_work = q[1].day_of_work + timedelta(days=1), is_work = q[1].is_work)
-
-        new_work_schedule.save()
+        if worker.work_style == 2:
+            end_date = WorkSchedule.objects.filter(stylist = worker.pk).order_by('-day_of_work').first().day_of_work
+            if end_date > date.today() + timedelta(days=7):
+                return
+            end_date = end_date - timedelta(days=1)
+            q = WorkSchedule.objects.filter(stylist = worker.pk).filter(day_of_work__gte = end_date)
+            #выбираем даты большие предпоследней в записи, чтобы на сонове двух последних записанных днях делть вывод о следующем дне
+            if q[1].is_work == q[0].is_work == True:
+                new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
+                    day_of_work = q[1].day_of_work + timedelta(days=1), is_work = False)
+            elif q[1].is_work == q[0].is_work == False:
+                new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
+                    day_of_work = q[1].day_of_work + timedelta(days=1), is_work = True)
+            else:
+                new_work_schedule = WorkSchedule(stylist = Stylist(id = worker.pk),
+                    day_of_work = q[1].day_of_work + timedelta(days=1), is_work = q[1].is_work)
+            new_work_schedule.save()
 
 def add_blocks():
     end_date = WorkSchedule.objects.order_by('-day_of_work').first().day_of_work
@@ -34,7 +35,6 @@ def add_blocks():
         begin_date = date.today()
     else:
         begin_date = Blocks.objects.order_by('-date').first().date
-
 
     times = Times.objects.all()
     stylists = Stylist.objects.all()
@@ -52,23 +52,13 @@ def add_blocks():
 
 
 def register_start(request):
-    #blocks = Blocks.objects.all()
-    #сделать выборкупо времени, где исключаются все блоки с датой меньше завтрашнего дня
-    #address = Address.object.all()
-    #stylist = Stylist.object.all()
-    #options = Option.object.all()
-    #return render(request, "register.html",
-    #{"blocks": blocks, "address": address, "stylist": stylist, "options": options})
-    str = ""
     if request.method == 'POST':
         add_schedule_2x2()
         str = request.POST.get("test")
-    return render(request, "register.html",{"str":str})
+    return render(request, "register.html")
 
 def functions(request):
-    if request.method == 'POST':  # 1
-        # We are creating a form instanse to save the form data
-        # Validate the form
+    if request.method == 'POST':
         if request.POST["passwd"] == "123":
             return redirect('proxy_func')
     return render(request, 'functions.html')
@@ -78,12 +68,8 @@ def proxy_func(request):
         url = request.META['HTTP_REFERER']
     except Exception:
         return redirect('/')
-    #url = url[-9]
     add_schedule_2x2()
     add_blocks()
     return redirect('success')
-    #return redirect('')
 def success(request):
-    #if approve:
     return render(request, "success.html")
-    #return redirect('register_start')

@@ -2,9 +2,7 @@
 from django.db import models
 from datetime import datetime
 from datetime import time
-# Create your models here.
 
-#tipa zapis k stilistu
 def get_default_my_date():
     return "Запись от "+datetime.now().strftime("%d.%m.%Y (%H:%M)")
 class Appointment(models.Model):
@@ -25,7 +23,6 @@ class Appointment(models.Model):
 
     def __str__(self):
         return self.title
-#title = models.CharField(max_length=255)#имя файла
 class Option(models.Model):
     name = models.CharField(max_length=255, verbose_name = "Наименование")
     price = models.CharField(max_length=255, verbose_name = "Начальная цена")
@@ -35,12 +32,18 @@ class Option(models.Model):
     def __str__(self):
         return self.name
 class Stylist(models.Model):
+    WORK_STYLES =[
+        (0,'Без графика'),
+        (1,'5 через 2'),
+        (2,'2 через 2'),
+        (3,'3 через 1'),
+    ]
     name = models.CharField(max_length=255, verbose_name = "Имя")
     surname = models.CharField(max_length=255, verbose_name = "Фамилия")
     patronymic = models.CharField(max_length=255, verbose_name = "Отчетсво", null = True, blank=True)
     photo = models.ImageField(upload_to="images/stylists/", default = 'null', null = True)
     about = models.TextField(verbose_name = "О себе")
-
+    work_style = models.IntegerField(choices=WORK_STYLES, default = 2)
     def __str__(self):
         return self.name+" "+self.surname
 class Address(models.Model):
@@ -65,12 +68,8 @@ class WorkSchedule(models.Model):
             return  "123"
 
 class Blocks(models.Model):
-    #number = models.IntegerField()#1-16
     time = models.ForeignKey('Times', on_delete=models.PROTECT)#time_id
-    #occupied = models.BooleanField(default=False)#zanato?
     date = models.DateField() #now.strftime("%A") = day of week
-    # day_name = DAY_CHOICES
-    # time  = TIME_CHOICES
     appointment = models.ForeignKey('Appointment', on_delete = models.SET_NULL, null = True, blank=True, default=None)
     #занятость смотрим по null в appointmemt
     stylist = models.ForeignKey('Stylist', on_delete=models.PROTECT)
