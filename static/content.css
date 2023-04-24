@@ -1,27 +1,177 @@
 @import url(https://fonts.googleapis.com/css?family=Lora);
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+@import "https://unpkg.com/open-props";
+@font-face {
+	font-family: 'App-Ital';
+	    src: url('fonts/appetite-italic.eot'); /* IE 9 Compatibility Mode */
+	    src: url('fonts/appetite-italic.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+            url('fonts/appetite-italic.woff2') format('woff2'), /* Super Modern Browsers */
+            url('fonts/appetite-italic.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+            url('fonts/appetite-italic.ttf') format('truetype'), /* Safari, Android, iOS */
+            url('fonts/appetite-italic.svg#appetite-italic') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+@font-face {
+    font-family: 'Mirava';
+    	src: url('fonts/mirava_regular_personal_use_onl.eot'); /* IE 9 Compatibility Mode */
+    	src: url('fonts/mirava_regular_personal_use_onl.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+    		url('fonts/mirava_regular_personal_use_onl.woff2') format('woff2'), /* Super Modern Browsers */
+    		url('fonts/mirava_regular_personal_use_onl.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+    		url('fonts/mirava_regular_personal_use_onl.ttf') format('truetype'), /* Safari, Android, iOS */
+    		url('fonts/mirava_regular_personal_use_onl.svg#mirava_regular_personal_use_onl') format('svg'); /* Chrome < 4, Legacy iOS */
+}
+.logo_text
+{
+    font-family:'Mirava';
+    font-size: 80px;
+    color: white;
+    margin-top:-32px;
+}
+.main_logo_text
+{
+    font-family:'App-Ital';
+    font-size: 88px;
+    color: #D01BA8;
+}
 * {
 	margin: 0;
 	padding: 0;
+}
+.work_mode
+{
+    align:center;
+    background: #2a244a;
+    width: calc(500px + (1200 - 500) * ((100vw - 500px) / (1920 - 500)));
+    height: auto;
+}
+.work_mode .mode_text
+{
+    font-family: «Libre Baskerville»;
+    text-shadow: 0 1px 1px #D01BA8;
+    font-size: 5vw;
+    color:#D01BA8;
+    letter-spacing: 4px;
+}
+.work_mode ul
+{
+    list-style: none; /*убираем маркеры списка*/
+	margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+	padding-left: 6vw; /*убираем левый отступ, равный 40px*/
+}
+.work_mode li
+{
+    border-right: 0.6vw solid white;
+    font-size:4vw;
+}
+
+
+.main_button {
+  box-sizing: border-box;
+}
+
+.main_page{
+    margin:0 5% 0 5%;
+    padding:0 1% 0 1%;
+    width:90%;
+    color:white;
+    -webkit-box-shadow: 0px 20px 22px 3px rgba(42, 36, 74, 0.27);
+    -moz-box-shadow: 0px 20px 22px 3px rgba(42, 36, 74, 0.27);
+    box-shadow: 0px 12px 20px 3px rgba(42, 36, 74, 0.27);
+}
+.main_bg{
+
+  border-radius: 8px;
+  margin:0 1% 0 1%;
+  width:98%;
+  background: #2a244a;
+  width:auto;
+  align:center;
+  display: grid;
+  place-items: center;
+  min-height: 20vh;
+  -webkit-box-shadow: 0px 12px 22px 3px rgba(42, 36, 74, 0.27);
+  -moz-box-shadow: 0px 12px 22px 3px rgba(42, 36, 74, 0.27);
+  box-shadow: 0px 12px 22px 3px rgba(42, 36, 74, 0.27);
+  display: grid;
+  grid-template-columns: 12vw 20vw 22vw 20vw;
+
+}
+
+.main_button button {
+  font-family: «Libre Baskerville»;
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-5);
+  color: #2a244a;
+  background: var(--gray-0);
+  border: 0;
+  padding: var(--size-4) var(--size-8);
+  transform: translateY(calc(var(--y, 0) * 1%)) scale(var(--scale));
+  transition: transform 0.1s;
+  position: relative;
+  width: 14vw
+}
+
+.main_button button:hover {
+  --y: -10;
+  --scale: 1.1;
+  --border-scale: 1;
+}
+
+.main_button button:active {
+  --y: 5%;
+  --scale: 0.9;
+  --border-scale: 0.9, 0.8;
+}
+
+.main_button button:before {
+  content: "";
+  position: absolute;
+  inset: calc(var(--size-3) * -1);
+  border: var(--size-2) solid var(--gray-0);
+  transform: scale(var(--border-scale, 0));
+  transition: transform 0.125s;
+
+  --angle-one: 105deg;
+  --angle-two: 290deg;
+  --spread-one: 30deg;
+  --spread-two: 40deg;
+  --start-one: calc(var(--angle-one) - (var(--spread-one) * 0.5));
+  --start-two: calc(var(--angle-two) - (var(--spread-two) * 0.5));
+  --end-one: calc(var(--angle-one) + (var(--spread-one) * 0.5));
+  --end-two: calc(var(--angle-two) + (var(--spread-two) * 0.5));
+
+  mask: conic-gradient(
+    transparent 0 var(--start-one),
+    white var(--start-one) var(--end-one),
+    transparent var(--end-one) var(--start-two),
+    white var(--start-two) var(--end-two),
+    transparent var(--end-two)
+  );
+
+  z-index: -1;
 }
 ul {
 	list-style: none; /*убираем маркеры списка*/
 	margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
 	padding-left: 0; /*убираем левый отступ, равный 40px*/
   }
-a {text-decoration: none; /*убираем подчеркивание текста ссылок*/
+a {
+    text-decoration: none; /*убираем подчеркивание текста ссылок*/
 	font-family: 'Lora', serif;
 	transition: .5s linear;
 }
 .minwdh{
 	min-width: 400px;
 }
+.mapwidth
+{
+    width: calc(300px + (1200 - 700) * ((100vw - 500px) / (1920 - 500)));
+}
 .center-text {
   font-size: 1.2em;
   font-family: 'Lora', serif;
 }
 .center-text p {
-  font-size: 1.5em;
+  font-size: 2em;
   min-width: fit-content;
 }
 .center-text li {
@@ -87,33 +237,31 @@ a.nav:hover
 .logo
 {
 	display: grid;
-	grid-template-columns: 100px 1fr 2fr;
+	grid-template-columns: 100px 1fr 10fr;
 	background-color:#2a244a;
 	width: 100%;
-	height:180px !important;
+	height:220px !important;
  	overflow: hidden;
 }
 
-.logo img
+.logo_img
 {
 	width: auto;
-	height: 180px;
+	height: 220px;
 	object-fit: cover;
+	border: None;
 }
-
-ul.menu_main
+.main_text p
 {
-	list-style: none; /*убираем маркеры списка*/
-  	margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
-  	padding: 0px; /*убираем левый отступ, равный 40px*/
-  	display: grid;
-	grid-template-columns: 150px 150px 150px 150px;
+    color: #2a244a;
+    font-size: 2vw;
+    font-family: «Libre Baskerville», serif;
+    line-height: 45px;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+    padding-top: 20px;
 }
-li.main_menu 
-{
-	display: inline;
-}
-.menu_main a 
+.menu_main a
 {
 	font-size: 130%;
 	text-decoration: none !important; /*убираем подчеркивание текста ссылок*/
@@ -121,12 +269,12 @@ li.main_menu
 	transition: .5s linear;
 	padding: .7em;
   display: block;
-  color: #2a244a !important;
-  border-right: 1px solid #564b92;
+  color: black !important;
+  //border-right: 1px solid #564b92;
   }
 .menu_main a:hover 
 {
-	background: #7262cabb;
+	background: #E850C6;
 }
 .menu_footer__link {
 	font-size: 1.2rem;
@@ -203,11 +351,11 @@ li.main_menu
 }
 .galery
 {
-	width: 80%;
+	width: 90%;
     height: 100%;
     position: relative;
     top: 0;
-    left: 10%;
+    left: 5%;
     display: flex;
     align-items: center;
     align-content: center;

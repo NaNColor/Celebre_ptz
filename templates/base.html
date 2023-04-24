@@ -11,20 +11,32 @@
 <body>
 <div class="logo">
 	<div>  </div>
-	<img src="{% static 'ava1.png' %}" alt="logo">
-	<img src="{% static 'celebre1.png' %}" alt="Celebre">
+	<a href="../"><img src="{% static 'ava1.png' %}" alt="logo" class="logo_img"></a>
+    <div style="min-width: 800px">
+        <table  style=" width:80%" bgcolor="#2a244a">
+            <tr>
+                <td align="right" ><img src="{% static 'white_noznitsi.png' %}"  height="80px"></td>
+                <td align="center" width="320px">
+                    <div class="main_logo_text">
+                        Celebre
+                    </div>
+                </td>
+                <td align="left"><img src="{% static 'white_rascheska.png' %}" height="80px"></td>
+            </tr>
+
+        </table>
+        <table style=" width:80%;" bgcolor="#2a244a" >
+            <tr>
+                <td align="center">
+                    <div class="logo_text">ПАРИКМАХЕРСКАЯ</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+	{#<a href="../"><img src="{% static 'celebre1.png' %}" alt="Celebre"></a>#}
 </div>
-<table height="auto" style="margin: 0; padding: 0; background: rgba(25, 14, 128, 0.383);">
-	<tr style="margin: 0; padding: 0;"><td width="80%" style="margin: 0; padding: 0;"></td>
-	<td style="margin: 0; padding: 0;">
-	<ul class="menu_main">
-		<li><a href="../">Главная</a></li>
-		<li><a href="/register">Запись</a></li>
-		<li><a href="#">О нас</a></li>
-		<li><a href="#">Портфолио</a></li>
-	</ul>
-	</td></tr>
-</table>
+{% block backlink %}
+{% endblock %}
 {% endblock %}
 
 {% block page %}
@@ -33,7 +45,6 @@
 {% endblock %}
 
 {% block footer %}
-
 <footer class="footer">
     
     <ul class="social-icon">
@@ -41,12 +52,12 @@
           <ion-icon name="logo-vk"></ion-icon>
         </a></li>
       <li class="social-icon__item"><a class="social-icon__link" href="#">
-          <ion-icon name="logo-instagram"></ion-icon>
+          <ion-icon name="logo-whatsapp"></ion-icon>
         </a></li>
     </ul>
     <ul class="menu_footer">
-      <li class="menu_footer__item"><a class="menu_footer__link" href="#">Главная</a></li>
-      <li class="menu_footer__item"><a class="menu_footer__link" href="#">Запись</a></li>
+      <li class="menu_footer__item"><a class="menu_footer__link" href="../">Главная</a></li>
+      <li class="menu_footer__item"><a class="menu_footer__link" href="../register">Запись</a></li>
       <li class="menu_footer__item"><a class="menu_footer__link" href="#">О нас</a></li>
       <li class="menu_footer__item"><a class="menu_footer__link" href="#">Портфолио</a></li>
 	</ul>
